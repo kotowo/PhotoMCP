@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Xcodeのテンプレートが生成するキーに以下をマージすること。
+	     既存キー（CFBundleExecutable等）は削除しないこと。 -->
+
+	<key>LSUIElement</key>
+	<true/>
+	<!-- Dockアイコン・メニューバー(アプリメニュー)を表示しない常駐アプリにする -->
+
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>ClaudeがPhotos.appの写真を検索・取得できるようにするため、写真へのアクセスを許可してください。</string>
+
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>このアプリは写真の追加・編集は行いません（読み取り専用）。</string>
+
+	<key>NSAppleEventsUsageDescription</key>
+	<string>search_photosのキーワード検索で、Photos.appの検索機能（被写体・シーンでの検索）を利用するため、「写真」の操作を許可してください。</string>
+	<!-- 2026-09-28追加。PhotosAppSearch.swift がAppleScriptの search for を使う -->
+
+	<key>LSMinimumSystemVersion</key>
+	<string>13.0</string>
+
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
+	<!-- Resources/Icons/AppIcon.icns を参照（2026-09-27追加） -->
+</dict>
+</plist>

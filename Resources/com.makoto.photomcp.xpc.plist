@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.makoto.photomcp.xpc</string>
+
+	<!-- ⚠️ ビルドしたPhotoMCPApp.appの実行ファイルへの実パスに書き換えること。
+	     例: /Applications/PhotoMCPApp.app/Contents/MacOS/PhotoMCPApp -->
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Applications/PhotoMCPApp.app/Contents/MacOS/PhotoMCPApp</string>
+	</array>
+
+	<!-- PhotoMCPXPC.machServiceName (Shared/PhotoMCPXPCProtocol.swift) と必ず一致させること -->
+	<key>MachServices</key>
+	<dict>
+		<key>com.makoto.PhotoMCP.xpc</key>
+		<true/>
+	</dict>
+
+	<key>RunAtLoad</key>
+	<true/>
+
+	<key>KeepAlive</key>
+	<true/>
+
+	<!-- GUI(Aqua)セッションで起動する。TCC(写真アクセス許可)ダイアログ表示に必要 -->
+	<key>LimitLoadToSessionType</key>
+	<string>Aqua</string>
+
+	<key>StandardErrorPath</key>
+	<string>/tmp/photomcp-app.err.log</string>
+	<key>StandardOutPath</key>
+	<string>/tmp/photomcp-app.out.log</string>
+</dict>
+</plist>

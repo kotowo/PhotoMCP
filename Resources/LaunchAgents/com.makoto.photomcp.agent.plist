@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!--
+	SMAppService.agent(plistName:) で登録する LaunchAgent（2026-09-28追加）。
+	.app の Contents/Library/LaunchAgents/ に同梱する（scripts/release.sh がコピーする）。
+	ファイル名は Label + ".plist" と一致させること（AgentRegistration.plistName）。
+
+	旧方式（~/Library/LaunchAgents/com.makoto.photomcp.xpc.plist を手で置く）とは
+	Label を分けている。ただし MachServices 名は同じなので、旧方式と同時には動かせない。
+	-->
+	<key>Label</key>
+	<string>com.makoto.photomcp.agent</string>
+
+	<!-- .app からの相対パス。アプリの置き場所に依存しない -->
+	<key>BundleProgram</key>
+	<string>Contents/MacOS/PhotoMCPApp</string>
+
+	<!-- 「ログイン項目」画面でこのアプリの項目として表示させる -->
+	<key>AssociatedBundleIdentifiers</key>
+	<array>
+		<string>com.makoto.PhotoMCP.app</string>
+	</array>
+
+	<!-- PhotoMCPXPC.machServiceName (Shared/PhotoMCPXPCProtocol.swift) と必ず一致させること -->
+	<key>MachServices</key>
+	<dict>
+		<key>com.makoto.PhotoMCP.xpc</key>
+		<true/>
+	</dict>
+
+	<key>RunAtLoad</key>
+	<true/>
+
+	<!--
+	異常終了時のみ再起動する。メニューの「終了」（正常終了）後は常駐しないが、
+	MCPServer から接続があれば MachServices によりオンデマンドで起動される。
+	-->
+	<key>KeepAlive</key>
+	<dict>
+		<key>SuccessfulExit</key>
+		<false/>
+	</dict>
+
+	<!-- GUI(Aqua)セッションで起動する。TCC(写真アクセス許可)ダイアログ表示に必要 -->
+	<key>LimitLoadToSessionType</key>
+	<string>Aqua</string>
+
+	<key>StandardErrorPath</key>
+	<string>/tmp/photomcp-app.err.log</string>
+	<key>StandardOutPath</key>
+	<string>/tmp/photomcp-app.out.log</string>
+</dict>
+</plist>
