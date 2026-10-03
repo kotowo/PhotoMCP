@@ -153,7 +153,8 @@ spctl --assess --type execute -vv "$APP"
 # --- 6. 配布用zip ------------------------------------------------------------
 step "配布用zip（ステープル済みの.appを固め直す）"
 ditto -c -k --keepParent "$APP" "$OUT/$ZIP_NAME"
-shasum -a 256 "$OUT/$ZIP_NAME" | tee "$OUT/$ZIP_NAME.sha256"
+# .sha256 にはファイル名だけを書く（絶対パスを入れると公開資産に手元のパスが載り、利用者の shasum -c も失敗する）
+(cd "$OUT" && shasum -a 256 "$ZIP_NAME") | tee "$OUT/$ZIP_NAME.sha256"
 
 step "完了"
 echo "出力: $OUT"

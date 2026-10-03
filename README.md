@@ -16,7 +16,7 @@ MacOS の写真ライブラリを、Claude DesktopやClaude Code等の AI Agent 
 
 ## インストール
 
-1. [Releases](https://github.com/kotowo/PhotoMCP/releases) から最新の `PhotoMCPApp-<version>-<build>.zip`（例: `PhotoMCPApp-0.1.1-2.zip`）をダウンロードし、`PhotoMCPApp.app` を `/Applications` または `~/Applications` に置く
+1. [Releases](https://github.com/kotowo/PhotoMCP/releases) から最新の `PhotoMCPApp-<version>-<build>.zip`（例: `PhotoMCPApp-0.1.1-2.zip`）をダウンロードし、`PhotoMCPApp.app` を `/Applications` に置く
 2. `PhotoMCPApp.app` をダブルクリックで一度起動する
    - 初回は常駐用の登録だけ行って終了する
    - 以降はログイン時に自動起動する（メニューバーにアイコンが表示される）
@@ -33,7 +33,7 @@ MacOS の写真ライブラリを、Claude DesktopやClaude Code等の AI Agent 
 {
   "mcpServers": {
     "photomcp": {
-      "command": "/Users/<your-username>/Applications/PhotoMCPApp.app/Contents/Resources/MCPServer"
+      "command": "/Applications/PhotoMCPApp.app/Contents/Resources/MCPServer"
     }
   }
 }
@@ -43,7 +43,7 @@ MacOS の写真ライブラリを、Claude DesktopやClaude Code等の AI Agent 
 
 ```bash
 claude mcp add --scope user photomcp -- \
-  "$HOME/Applications/PhotoMCPApp.app/Contents/Resources/MCPServer"
+  "/Applications/PhotoMCPApp.app/Contents/Resources/MCPServer"
 ```
 
 登録後に開いた新しいセッションから、`/mcp` コマンドで `photomcp` のツールが見えるようになります（登録時に既に開いていたセッションには反映されません）。
