@@ -1,5 +1,7 @@
 # PhotoMCP
 
+[English](README.en.md) | 日本語
+
 MacOS の写真ライブラリを、Claude DesktopやClaude Code等の AI Agent から検索・閲覧・保存できるようにする常駐型 MCP サーバです。
 
 ## できること
