@@ -79,6 +79,34 @@ swift build -c release --product PhotoMCPApp --product MCPServer
 
 配布用`.app`の組み立て・署名・公証は `scripts/release.sh` を参照してください。
 
+## バージョニング方針
+
+配布物には2つの番号があり、ファイル名は `PhotoMCPApp-<version>-<build>.zip` です（例: `PhotoMCPApp-0.1.1-2.zip`）。
+
+### version（`CFBundleShortVersionString`）
+
+`メジャー.マイナー.パッチ` で表します。
+
+- メジャー: V1.0.0 の機能要件をすべて満たした時点で 1 とし、以降は変更しません。
+- マイナー: 機能追加です。9 を超えたら 10、11 … と増やします（桁上がりはしません）。
+- パッチ: バグ修正です。
+
+1.0.0 までの 0.x 系は正式版の前の版として、接尾辞なしで公開します。
+
+### ベータ版
+
+1.0.0 以降、マイナーを上げるときは、先にベータ版を公開します。`1.1.0-beta.1`、`1.1.0-beta.2` … と進め、確認後に `1.1.0` を公開します。
+
+### build（`CFBundleVersion`）
+
+配布物を作るたびに +1 する整数です。version を上げても、ベータ版と正式版の別なく、1 に戻さず単調に増やします。
+
+### Git タグと GitHub Release
+
+タグと Release は `v<version>`（例: `v1.1.0-beta.1`）です。ベータ版は GitHub の pre-release として公開します。
+
+配布用ビルドは `scripts/release.sh <version> <build>` で作ります。`MCPServer` が自己申告するバージョン文字列（`PhotoMCPHelper/main.swift`）は Info.plist とは別に直書きされているため、リリースのたびに手で合わせてください。
+
 ## ライセンス
 
 [MIT License](LICENSE) です。
